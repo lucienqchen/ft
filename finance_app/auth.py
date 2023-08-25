@@ -1,11 +1,12 @@
 import functools
+import sqlite3
 
 from flask import (
     Blueprint, flash, g, redirect, render_template, request, session, url_for
 )
 from werkzeug.security import check_password_hash, generate_password_hash
 
-from financial_tracker.db import get_db
+from finance_app.db import get_db
 
 # Initializes a blueprint named 'auth'
 bp = Blueprint("auth", __name__, url_prefix = "/auth")
@@ -18,6 +19,7 @@ def register():
         username = request.form["username"]
         password = request.form["password"]
         db = get_db()
+        print(db)
         error = None
         
         # Implements errors if fields are missing
